@@ -5,6 +5,7 @@
         <script src='node_modules/jquery/dist/jquery.min.js'></script>
         <script src='node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
         <script src='node_modules/angular/angular.min.js'></script>
+        <script src='download.js'></script>
         <script src='main.js'></script>
     </head>
     <body>
@@ -13,14 +14,20 @@
               <a class="navbar-brand" href="#">Monarch ToDo List</a>
             </div>
         </nav>
-        <div class="container-fluid" ng-controller="ListController as ctrl">
+        <div class="container-fluid" id="listCtrl" ng-controller="ListController as ctrl">
 
             <mdamenu>
                 <mdamenu title="ToDoList" app></mdamenu>
+                <mdamenu title="File">
+                    <mdamenuitem title="Export List" action="mdaExport()"></mdamenuitem>
+                </mdamenu>
                 <mdamenu title="Lists">
-                    <mdamenuitem title="New List" action="ctrl.newList()"/>
-                    <mdamenuitem title="Edit Selected"/>
-                    <mdamneuitem title="Delete Selected"/>
+                    <mdamenuitem title="New List" action="mdaNewList()"></mdamenuitem>
+                    <mdamenuitem title="Edit Selected" action="mdaEditList()"></mdamenuitem>
+                    <mdamenuitem title="Delete Selected" action="mdaDeleteList()"></mdamenuitem>
+                </mdamenu>
+                <mdamenu title="Items">
+                    <mdamenuitem ng-attr-title="{{ ctrl.currentList.areDoneVisible ? 'Hide Done Items' : 'Show Done Items'}}" action="mdaShowDone()"></mdamenuitem>
                 </mdamenu>
             </mdamenu>
 
@@ -44,13 +51,14 @@
                 </div>
                 <div class="col-sm-9 list-view" ng-if="ctrl.currentList">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-8">
                             <h2> {{ ctrl.currentList.title }}</h2>
                         </div>
-                        <div class="col-sm-9 action-bar">
+                        <div class="col-sm-4 action-bar">
                             <div class="pull-right" role="group">
                                 <button ng-click="ctrl.currentList.toggleDone()" type="button" class="glyphicon glyphicon-ok action-button" ng-class="{'green-font':ctrl.currentList.areDoneVisible}"></button>
                                 <button ng-click="ctrl.deleteList(ctrl.currentList)" type="button" class="glyphicon glyphicon-trash action-button"></button>
+                                <button ng-click="ctrl.exportList(ctrl.currentList)" type="button" class="glyphicon glyphicon-share action-button"></button>
                             </div>
                         </div>
                     </div>

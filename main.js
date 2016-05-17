@@ -28,6 +28,17 @@ todoListApp.controller('ListController', function ($scope) {
         }
     }
 
+    this.exportList = function(list){
+        var list_str = list.title + "\n\n";
+        for(var i=0; i < list.items.length; i++){
+            var item = list.items[i]
+            list_str += String(i + 1) + ". " + item.title + "\n"
+            list_str += item.time + "\n"
+            list_str += item.description + "\n\n";
+        }
+        download(list_str, list.title + ".txt", "text/plain");
+    }
+
     this.toggleEditForList = function(list){
         if(list.editMode){
             list.title = list.input
@@ -86,4 +97,45 @@ ListItem.prototype.toggleEditMode = function(){
 
 ListItem.prototype.toggleDone = function(bool){
     this.isDone = !this.isDone;
+}
+
+//MDA Functions
+
+function getController(){
+    return angular.element($("#listCtrl")).controller();
+}
+
+function getScope(){
+    return angular.element($("#listCtrl")).scope();
+}
+
+function applyScope(){
+    return getScope().$apply();
+}
+
+function mdaNewList(){
+    getController().newList();
+    applyScope();
+}
+
+function mdaDeleteList(){
+    var controller = getController();
+    controller.deleteList(controller.currentList)
+    applyScope();
+}
+
+function mdaEditList(){
+    var controller = getController();
+    controller.toggleEditForList(controller.currentList);
+    applyScope();
+}
+
+function mdaExport(){
+    var controller = getController();
+    controller.exportList(controller.currentList);
+}
+
+function mdaShowDone(){
+    getController().currentList.toggleDone();
+    applyScope();
 }
