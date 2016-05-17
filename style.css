@@ -1,0 +1,226 @@
+body {
+    background-color: #f7f7f7;
+    color: ;
+}
+
+.blue-font {
+    color: #0099cc;
+}
+
+.input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+}
+
+.green-font {
+    color: #dff0d8 !important;
+}
+
+.low-opacity {
+    opacity: 0.4 !important;
+}
+
+.td-button:hover {
+    cursor: pointer;
+}
+
+/** BOOTSTRAP Overrides**/
+.container-fluid {
+    height: 100%;
+}
+
+.main {
+    height: 100%;
+}
+
+/** SIDEBAR **/
+
+.sidebar {
+    border-right: 1px solid #d7d7d7;
+    height: 100%;
+}
+
+.sidebar .list-title {
+    border-bottom: 1px solid #d7d7d7;
+    padding-bottom: 15px;
+    margin-bottom: 0;
+}
+
+.sidebar .list-title .add-button {
+    float: right;
+}
+
+.list-item {
+    width: 100%;
+    font-family: "Open Sans";
+    padding: 10px 0 10px 0;
+    font-size: 20px;
+    color: #171717;
+    border-bottom: 1px solid #d7d7d7;;
+    transition: all 0.1s ease-in-out;
+}
+
+.list-item span, .list-item input {
+    margin-left: 20px;
+}
+
+.list-item input {
+    color: #f7f7f7;
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border: 0 0 1px 0 solid gray;
+    border-bottom: 2px solid;
+    background-color: transparent;
+    outline: none;
+}
+
+.list-item .edit-button, .list-item .ok-button {
+    float: right;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.list-item .edit-button{
+    display: none;
+}
+
+.list-item:hover .edit-button {
+    display: block;
+}
+
+.list-item:hover {
+    cursor: pointer;
+}
+
+
+.list-item-selected, .list-item:hover {
+    background-color: #0099cc;
+    color: #f7f7f7;
+    box-shadow: 1px 1px 5px gray;
+    transition: all 0.1 ease-in-out;
+}
+
+
+
+/** LIST VIEW **/
+
+.list-view {
+    height: 100%;
+}
+
+.item {
+    width: 95%;
+    margin-top:20px;
+    display:inline-block;
+    border-bottom: 1px solid #d7d7d7;
+    padding-bottom: 25px;
+}
+
+.action-button {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #f7f7f7;
+    box-shadow: 1px 1px 5px gray;
+    border: none;
+    background-color: #0099cc;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 12px !important;
+    outline: none;
+}
+
+.action-button:hover {
+    background-color: #f7f7f7;
+    box-shadow: none;
+    color: #0099cc;
+}
+
+.create-button {
+    margin-top: 10px;
+    font-size: 15px;
+    padding-top: 4px;
+}
+
+.item-list {
+    list-style: none;
+    padding: 0;
+}
+
+.new-item {
+    margin-top:50px;
+    border-bottom: none;
+}
+
+input.new-title {
+    width: 70%;
+    display: inline-block;
+    border-top: none;
+    float: left;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #d7d7d7;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+textarea.new-desc {
+    width: 100%;
+    border-radius: 3px;
+    /* box-shadow: inset 1px 1px 5px -1px gray; */
+    /* border: none; */
+    border-bottom: 1px solid #d7d7d7;
+    border-top: none;
+    margin-bottom: 10px;
+    border-left: none;
+    border-right: none;
+    outline: none;
+}
+
+input.new-time {
+    float: right;
+    border-bottom: 1px solid #d7d7d7;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    width: 20%;
+}
+
+.item .item-title {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.item .item-time {
+    display: inline-block;
+    font-style: italic;
+    color: #717171;
+}
+
+.item-actions {
+    display:inline-block;
+    float: right;
+    font-size: 20px;
+}
+
+.item-actions .item-action {
+    color: #0099cc;
+    margin-left: 10px;
+}
+
+.item-actions .item-action:hover {
+    cursor: pointer;
+}
+
+.item .item-title-edit {
+    margin-right: 20px;
+}
+
+.item .item-desc-edit {
+    width: 100%;
+    border-bottom: 1px solid #d7d7d7;
+}

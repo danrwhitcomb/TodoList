@@ -1,0 +1,82 @@
+<html ng-app="todoListApp">
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <script src='node_modules/jquery/dist/jquery.min.js'></script>
+        <script src='node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+        <script src='node_modules/angular/angular.min.js'></script>
+        <script src='main.js'></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Monarch ToDo List</a>
+            </div>
+        </nav>
+        <div class="container-fluid" ng-controller="ListController as ctrl">
+            <div class="row main">
+                <div class="col-sm-3 sidebar">
+                    <div class="blue-font list-title">
+                        <h3>
+                        Lists
+                        <span class='glyphicon glyphicon-plus add-button td-button' ng-click="ctrl.newList()"></span>
+                        </h3>
+                    </div>   
+                    
+                    <div class="list-item" ng-repeat="list in ctrl.lists" ng-class="{'list-item-selected': list == ctrl.currentList}" ng-click="ctrl.setCurrentList(list)">
+                        <span ng-if="!list.editMode">{{ list.title }}</span>
+                        <input ng-if="list.editMode" type="text" ng-model="list.input" onfocus>
+
+                        <span class="glyphicon glyphicon-pencil edit-button td-button" ng-if="!list.editMode" ng-click="ctrl.toggleEditForList(list)"></span>
+                        <span class="glyphicon glyphicon-ok ok-button td-button" ng-if="list.editMode" ng-click="ctrl.toggleEditForList(list)"></span>
+
+                    </div>
+                </div>
+                <div class="col-sm-9 list-view" ng-if="ctrl.currentList">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h2> {{ ctrl.currentList.title }}</h2>
+                        </div>
+                        <div class="col-sm-9 action-bar">
+                            <div class="pull-right" role="group">
+                                <button ng-click="ctrl.currentList.toggleDone()" type="button" class="glyphicon glyphicon-ok action-button" ng-class="{'green-font':ctrl.currentList.areDoneVisible}"></button>
+                                <button ng-click="ctrl.deleteList(ctrl.currentList)" type="button" class="glyphicon glyphicon-trash action-button"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul class="item-list">
+                                <li ng-repeat="listItem in ctrl.currentList.items" ng-if="!listItem.isDone || ctrl.currentList.areDoneVisible">
+                                    <div class="item" ng-class="{'low-opacity': listItem.isDone}">
+                                        <h4 ng-if="!listItem.editMode" class="item-title">{{ listItem.title }}</h4>
+                                        <input class="input item-title-edit" ng-if="listItem.editMode" class="" type="text" ng-model="listItem.title">
+
+                                        <p ng-if="!listItem.editMode" class="item-time"> {{ listItem.time }}</p>
+                                        <input class="input item-time-edit" type="text" ng-if="listItem.editMode" ng-model="listItem.time">
+
+                                        <div class="item-actions">
+                                            <div ng-click="listItem.toggleEditMode()" class=" item-action glyphicon" ng-class="{'glyphicon-pencil':!listItem.editMode, 'glyphicon-ok':listItem.editMode}"></div>
+                                            <div ng-click="listItem.toggleDone()" class="glyphicon glyphicon-ok item-action" ng-class="{'green-font': listItem.isDone}" ng-if="!listItem.editMode"></div>
+                                            <div ng-click="ctrl.currentList.removeItem(listItem)" class="glyphicon glyphicon-trash item-action"></div>
+                                        </div>
+
+                                        <p ng-if="!listItem.editMode" class="item-desc"> {{ listItem.description }}</p>
+                                        <textarea class="input item-desc-edit" type="text" ng-if="listItem.editMode" ng-model="listItem.description"></textarea>
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                            <div class="item new-item">
+                                <input ng-model="ctrl.currentList.itemInput.title" type="text" placeholder="Title" class="new-title"/>
+                                <input ng-model="ctrl.currentList.itemInput.time" type="text" placeholder="ToDo by...." class="new-time"/>
+                                <textarea ng-model="ctrl.currentList.itemInput.desc" type="text" placeholder="Description" class="new-desc"></textarea>
+                                <button ng-click="ctrl.currentList.newItem()" class="action-button create-button"><span class="glyphicon glyphicon-plus"></span> Add Item</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

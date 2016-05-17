@@ -1,0 +1,15 @@
+{
+  "name": "ToDoList",
+  "version": "1.0",
+  "description": "To-Do list web app optimized for use with the Monarch Browser",
+  "author": "Dan Whitcomb",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danrwhitcomb/ToDoList"
+  },
+  "dependencies": {
+    "angular": "*",
+    "jquery": "*",
+    "bootstrap": "*"
+  }
+}
