@@ -14,6 +14,16 @@
             </div>
         </nav>
         <div class="container-fluid" ng-controller="ListController as ctrl">
+
+            <mdamenu>
+                <mdamenu title="ToDoList" app></mdamenu>
+                <mdamenu title="Lists">
+                    <mdamenuitem title="New List" action="ctrl.newList()"/>
+                    <mdamenuitem title="Edit Selected"/>
+                    <mdamneuitem title="Delete Selected"/>
+                </mdamenu>
+            </mdamenu>
+
             <div class="row main">
                 <div class="col-sm-3 sidebar">
                     <div class="blue-font list-title">
